@@ -1,0 +1,103 @@
+<html>
+<head>
+    <title>Food Emoji List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-top: -1px; /* for continuous borders */
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Food Emoji List</h1>
+        <input type="text" id="taskInput" placeholder="Some Food Here">
+        <button onclick="addTask()">Add Item</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var input = document.getElementById('taskInput');
+            var foodItem = input.value.trim();
+            var emoji = getEmoji(foodItem);
+
+            if (foodItem !== '') {
+                var li = document.createElement('li');
+                li.textContent = foodItem + " " + emoji;
+                li.onclick = function() {
+                    this.classList.toggle('completed');
+                }
+                document.getElementById('taskList').appendChild(li);
+                input.value = '';
+            }
+        }
+
+        function getEmoji(foodItem) {
+            const foodEmojis = {
+                'apple': '🍎',
+                'banana': '🍌',
+                'carrot': '🥕',
+                'cherry': '🍒',
+                'grape': '🍇',
+                'peach': '🍑',
+                'pear': '🍐',
+                'strawberry': '🍓',
+                'watermelon': '🍉'
+                // Add more foods and corresponding emojis as needed
+            };
+            return foodEmojis[foodItem.toLowerCase()] || '🍽️'; // Default emoji if not found
+        }
+    </script>
+</body>
+</html>
